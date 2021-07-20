@@ -1,4 +1,4 @@
-# git repo clone으로 시작하기
+# Git repository clone으로 시작하기
  - git은 원격 저장소(remote repository)로 로컬 저장소와 clone을 통해 연동하여 사용할 수 있다.
 
 ## 기본 설정
