@@ -7,10 +7,17 @@ git config --global user.name "github 사용자 이름"
 git config --global user.email "github email 주소"
 git config --global core.editor "vim" 
 git config --global core.pager "cat"
+git config --global init.defaultBranch "main"
 ```
-내용을 삭제하고 싶을 경우에
-```git config --global --unser user.name```과 같이 사용할 수 있다.
+* 내용을 삭제하고 싶을 경우에
+```git config --global --unser user.nameg``과 같이 사용할 수 있다.
 
+* 저장 사항이 궁금한 경우
+```git config --list```로 설정을 확인할 수 있다.
+
+* 수정이 필요한 경우
+```vi ~/.gitconfig```에서 수정할 수 있다.
+ 
 ## 로컬 저장소에 clone 생성
 1. 나의 github 저장소의 주소를 복사한다.
 2. (MAC OS 기준) 터미널에서 로컬 저장소를 생성하고 싶은 경로로 이동하여 폴더(clone)를 생성한다.
