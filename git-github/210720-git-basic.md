@@ -19,7 +19,7 @@ git config --global core.pager "cat"
 git config --global init.defaultBranch "main"
 ```
 * 내용을 삭제하고 싶을 경우에
-```git config --global --unser user.nameg``과 같이 사용할 수 있다.
+```git config --global --unser user.name```과 같이 사용할 수 있다.
 
 * 저장 사항이 궁금한 경우
 ```git config --list```로 설정을 확인할 수 있다.
