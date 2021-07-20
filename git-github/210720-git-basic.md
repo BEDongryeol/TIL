@@ -16,8 +16,11 @@ git config --global core.pager "cat"
 2. (MAC OS 기준) 터미널에서 로컬 저장소를 생성하고 싶은 경로로 이동하여 폴더(clone)를 생성한다.
 3.  터미널에서 ```git clone 복사한 주소```를 입력한다.
 	처음 접속 시 github email 주소와 패스워드 입력 필요
-4. 생성한 
-	 ```git add```
-5. ```git commit```
-6. ```git push```
+4. 생성한 작업을 staging area로 add한다.
+	 ```git add filename```
+5. add한 작업을 local repository로 commit한다. 
+	```git commit filename```
+
+6. commit이 완료된 작업을 github(remote repository)로 push한다.
+	```git push origin branch_name```
 
