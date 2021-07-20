@@ -1,0 +1,23 @@
+# git repo clone으로 시작하기
+ - git은 원격 저장소(remote repository)로 로컬 저장소와 clone을 통해 연동하여 사용할 수 있다.
+
+## 기본 설정
+```zsh
+git config --global user.name "github 사용자 이름"
+git config --global user.email "github email 주소"
+git config --global core.editor "vim" 
+git config --global core.pager "cat"
+```
+내용을 삭제하고 싶을 경우에
+```git config --global --unser user.name```과 같이 사용할 수 있다.
+
+## 로컬 저장소에 clone 생성
+1. 나의 github 저장소의 주소를 복사한다.
+2. (MAC OS 기준) 터미널에서 로컬 저장소를 생성하고 싶은 경로로 이동하여 폴더(clone)를 생성한다.
+3.  터미널에서 ```git clone 복사한 주소```를 입력한다.
+	처음 접속 시 github email 주소와 패스워드 입력 필요
+4. 생성한 
+	 ```git add```
+5. ```git commit```
+6. ```git push```
+
