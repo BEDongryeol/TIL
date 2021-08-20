@@ -61,7 +61,7 @@ public class StringTest {
 <details>
 <summary> 예제 코드 확인하기 </summary>
 
-```aidl
+```java
 package ch04;
 
 import java.lang.reflect.Constructor;
