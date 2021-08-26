@@ -60,7 +60,8 @@ public class BookTest {
 - ```index(저장위치) = hash(key)```
 
 <details>
-<summary> Overriding </summary>
+<summary> Overriding 코드 확인하기 </summary>
+ 
 ```
 package ch02;
 
@@ -102,6 +103,7 @@ public class Student {
 ```
 
 <summary>예제 코드 확인하기</summary>
+ 
 ```
 package ch02;
 
@@ -124,9 +126,6 @@ public class EqualsTest {
     }
 }
 ```
-
-
-
 <details>
 
 
@@ -138,12 +137,14 @@ public class EqualsTest {
  - 명시적으로 clone() 메서드의 사용을 허용한다는 의미로 ```Cloneable``` interface를 명시해준다.
   - ```public class A implements Cloneable {~}```
  - A 클래스 내에서 clone() 메서드를 Override한다.
+
 ```
 @Override
 protected Object clone() throws CloneNotSupportedException {
     return super.clone();
 }
- ```
+```
+ 
  - 클론 코드 : ```Student copyStd = (Student)std1.clone();```
 
  
