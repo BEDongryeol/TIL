@@ -101,11 +101,11 @@ public class Student {
         return studentNum;
     }
 }
-
-
-
 ```
+</details>
 
+
+<details>
 <summary>예제 코드 확인하기</summary>
  
 ```
@@ -130,7 +130,7 @@ public class EqualsTest {
     }
 }
 ```
-<details>
+</details>
 
 
 ### clone() 메서드
