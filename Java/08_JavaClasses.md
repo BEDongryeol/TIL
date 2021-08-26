@@ -13,8 +13,10 @@
 ### toString() 메서드
 - 객체의 정보를 String으로 바꾸어서 사용할 때 쓰인다.
 - 재정의하여 참조변수가 멤버 변수 값을 return하게 할 수 있다.
+
 <details>
 <summary>예제 코드 확인하기</summary>
+ 
 ```
 class Book{
 
@@ -41,6 +43,8 @@ public class BookTest {
 
 ```
 </details>
+
+
 ### equals(), hashCode() 메서드
 > equals() 메서드와 hashCode() 메서드는 짝을 이룬다.
 > - equals()를 overriding하면 객체가 반환하는 hash값도 overriding해줘야 한다.
