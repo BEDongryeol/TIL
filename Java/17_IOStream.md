@@ -1,5 +1,4 @@
 # IO 스트림
-
 ## IO Stream (입출력 스트림)
 - 스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래
 - java의 입출력을 위한 스트림
@@ -7,7 +6,7 @@
   - 키보드, 마우스, 네트워크, 메모리 등
 
 ## 구분
-### 대상 기준 
+### 대상 기준
 - 입력과 출력 스트림은 독립적으로 구분된다.
 
 <details>
@@ -76,7 +75,7 @@
   - 표준 입력(키보드) 스트림
   - ```int d = System.in.read() // 한 바이트 읽기```
   > 한 바이트로 읽으면 한글과 같은 2바이트 이상은 불러올 수 없기 때문에 보조스트림으로 감싸주어야한다.
-  
+
 - System.err
   - 표준 에러 출력(모니터) 스트림
   - ```System.err.println("에러 메세지");```
@@ -155,7 +154,7 @@ public class SystemInTest {
   - 기반 스트림에서 자료를 읽을 때 추가 기능을 제공하는 보조 스트림의 상위 클래스
 
 #### 주요 메서드
-- int read() 
+- int read()
   - 입력 스트림으로부터 한 바이트의 자료를 읽고, 바이트 수를 반환
 - int read(byte b[])
   - b 크기의 자료를 읽고, 바이트 수를 반환
@@ -163,7 +162,7 @@ public class SystemInTest {
   - b 크기 자료에서의 인덱스 0으로부터 Off만큼 떨어진 곳부터 len까지 자료를 읽고, 바이트 수를 반환
 - void close()
   - 파일, 스트림을 불러왔을 때는 항상 close를 해주어야한다.
-  
+
 <details>
 <summary>int read() 하나씩 출력하기</summary>
 
@@ -274,7 +273,7 @@ public class FileTest2 {
   > 파일을 불러올 때 해당 이름의 파일이 없으면 생성한다.
   > - default : Overwrite(덮어쓰기, 기존 데이터는 무시한다.)
   > - append를 true로 설정하여 이어서 작성할 수 있다.
-  >   - ```new FileOutputStrem("a.txt", true);```
+      >   - ```new FileOutputStrem("a.txt", true);```
 
 - ByteArrayOutputStream
   - byte배열에서 바이트 단위로 자료를 쓴다.
@@ -282,7 +281,7 @@ public class FileTest2 {
   - 기반 스트림에서 자료를 쓸 때 추가 기능을 제공하는 보조 스트림의 상위 클래스
 
 #### 주요 메서드
-- int write() 
+- int write()
   - 한 바이트를 출력한다.
 - int write(byte b[])
   - b[] 크기의 자료를 출력한다.
@@ -293,7 +292,7 @@ public class FileTest2 {
   - 강제적으로 버퍼를 비워 자료를 출력하게한다.
 - void close()
   - 리소스를 닫으면서 flush()를 수행한다.
-  
+
 <details>
 <summary>Byte별로 write하기</summary>
 
@@ -374,6 +373,32 @@ public class FileOutputTest2 {
 - int read(char[] buf, int off, int len)
 - void close()
 
+<details>
+<summary>예제 코드 확인하기</summary>
+
+```java
+package Online;
+
+import java.io.FileReader;
+import java.io.IOException;
+
+public class IOTest {
+    public static void main(String[] args) {
+
+        try(FileReader fr = new FileReader("reader.txt")){
+            int i;
+            while ((i = fr.read()) != -1) {
+                System.out.print((char) i);
+            }
+
+        } catch (IOException e) {
+
+        }
+    }
+}
+```
+</details>
+
 ### Writer
 - 문자 단위 출력 스트림의 최상위 클래스
 - 추상 메서드를 하위 스트림이 상속받아 구현한다.
@@ -388,10 +413,150 @@ public class FileOutputTest2 {
 - int write(char[] buf)
 - int write(char[] buf, int off, int len)
 - int write(String str)
-- int write(Sring str, int off, int len)
+- int write(String str, int off, int len)
 - int flush()
 - void close()
 
-  
+<details>
+<summary>예제 코드 확인하기</summary>
 
+```java
+package Online;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriterTest {
+    public static void main(String[] args) {
+
+        try (FileWriter fw = new FileWriter("writer.txt")) {
+            fw.write('A');
+            char buf[] = {'B', 'C', 'D', 'E', 'F'};
+            fw.write(buf);
+            fw.write("안녕하세요.");
+            fw.write(buf, 1, 2);
+            fw.write("65");
+
+        }catch (IOException e) {
+
+        }
+    }
+}
+
+```
+</details>
+
+## 보조 스트림
+- 실제 읽고 쓰는 스트림이 아닌 보조 기능을 제공하는 스트림이다.
+  - FileInputStream과 FileOutputStream의 하위 클래스
+- 여러 기능을 조합하여 사용할 수 있는 Decorator Pattern으로 구현된다.
+- 생성자의 매개 변수로 파일 이름이 아닌 기반 스트림, 보조 스트림을 갖는다.
+
+### InputStreamReader, OutputStreamReader
+
+<details>
+<summary>예제코드 확인하기</summary>
+
+```java
+package Online;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class InputStreamReaderTest {
+    public static void main(String[] args) {
+
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream("reader.txt"))) {
+            int i;
+            while( (i = isr.read()) != -1) {
+                System.out.print((char)i);
+            }
+        } catch(IOException e) {
+
+        }
+    }
+}
+
+```
+</details>
+
+### BufferedInputStream, BufferedOutputStream
+
+<details>
+<summary>예제코드 확인하기</summary>
+
+```java
+package Online;
+
+import java.io.*;
+
+public class CopyTest {
+    public static void main(String[] args) {
+
+        long millisecond = 0;
+
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("reader.txt"));
+             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("copy.txt"))) {
+
+            millisecond = System.currentTimeMillis();
+
+            int i;
+            while ((i = bis.read()) != -1) {
+                bos.write(i);
+            }
+
+            millisecond = System.currentTimeMillis() - millisecond;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(millisecond + "소요되었습니다.");
+    }
+}
+```
+</details>
+
+### DataInputStream, DataOutputStream
+- 자료가 메모리에 저장된 상태 그대로 읽거나 쓰는 스트림
+  - 자료형, 크기를 유지하여 읽고 쓴다.
+- 기록한 자료형 그대로 불러와야한다.
+
+<details>
+<summary></summary>
+
+```java
+package Online;
+
+import java.io.*;
+
+public class DataIOTest {
+    public static void main(String[] args) {
+        try (FileOutputStream fos = new FileOutputStream("data.txt");
+             DataOutputStream dos = new DataOutputStream(fos)) {
+
+            dos.writeByte(100);
+            dos.writeChar('A');
+            dos.writeInt(10);
+            dos.writeFloat(3.14f);
+            dos.writeUTF("Test");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileInputStream fis = new FileInputStream("data.txt");
+             DataInputStream dis = new DataInputStream(fis))
+        {
+            System.out.println(dis.readByte());
+            System.out.println(dis.readChar());
+            System.out.println(dis.readInt());
+            System.out.println(dis.readFloat());
+            System.out.println(dis.readUTF());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+</details>
