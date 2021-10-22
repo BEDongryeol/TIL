@@ -6,5 +6,6 @@
 2. [Data Structure](https://github.com/BEDongryeol/TIL/tree/main/DataStructure)
 3. [HTML 기본](https://github.com/BEDongryeol/TIL/tree/main/HTML)
 4. [Java에 대하여](https://github.com/BEDongryeol/TIL/tree/main/Java)
+  4-1. [JDBC](https://github.com/BEDongryeol/TIL/tree/main/Java/JDBC)
 5. [Web](https://github.com/BEDongryeol/TIL/tree/main/WEB)
 6. [Git, GitHub](https://github.com/BEDongryeol/TIL/tree/main/git-github)
